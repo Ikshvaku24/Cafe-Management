@@ -1,7 +1,9 @@
 import pyodbc
+from socket import gethostname, gethostbyname
 class ItemDatbase:
     def __init__(self) -> None:
-        self.conn = pyodbc.connect('DRIVER={SQL Server}; SERVER=LAPTOP-1IG9818Q; DATABASE=cafe;Trusted_Connection=no;')
+        host_ipaddress = gethostbyname('host.docker.internal')
+        self.conn = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}}; SERVER={host_ipaddress}; DATABASE=cafe;UID=sa;PWD=<password>')
         self.cursor = self.conn.cursor()
         
     def get_Items(self):

@@ -28,15 +28,14 @@ RUN ACCEPT_EULA=Y apt-get install -y mssql-tools
 
 # Add mssql-tools to PATH
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc \
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
+echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile \
+source ~/.bashrc
 
 # Install unixODBC development headers (optional)
 RUN apt-get install -y unixodbc-dev
 
 # Install kerberos library for debian-slim distributions (optional)
 RUN apt-get install -y libgssapi-krb5-2
-
-
 # Copy application code
 COPY . .
 
