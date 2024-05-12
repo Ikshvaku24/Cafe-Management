@@ -2,6 +2,7 @@ import pyodbc
 from socket import gethostname, gethostbyname
 class ItemDatbase:
     def __init__(self) -> None:
+        # enable tcp/ip port and add it to firewall inbound rules
         host_ipaddress = gethostbyname('host.docker.internal')
         self.conn = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}}; SERVER={host_ipaddress}; DATABASE=cafe;UID=sa;PWD=<password>')
         self.cursor = self.conn.cursor()
